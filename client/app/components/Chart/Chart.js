@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import RTChart from 'react-rt-chart';
 
-class Chart extends Component {
+class Chart extends React.Component {
     constructor(props) {
         super(props);
     }
