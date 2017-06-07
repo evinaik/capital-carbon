@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
 import Header from '../Header/Header';
-import Chart from '../Chart/Chart';
+import CarbonLive from '../CarbonLive/CarbonLive';
 import Footer from '../Footer/Footer';
 
 const App = ({ children }) => (
   <div>
     <Header />
 
-    <Chart />
+    <CarbonLive />
 
     <main>
       {children}

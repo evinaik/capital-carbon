@@ -1,16 +1,18 @@
 import React from 'react';
+import './Header.css';
+// import Logo from 'babel-loader!svg-react-loader!./logo.svg';
 
-import { Link } from 'react-router-dom';
 
 const Header = () => (
   <header>
-    <Link to="/">Home</Link>
-
-    <nav>
-      <Link to="/helloworld">Hello World</Link>
+    <nav className="header">
+      <div className="cap">
+        Capital One Carbon 2017
+      </div>
+      <div className="team">
+        Team A Migos
+      </div>
     </nav>
-
-    <hr />
   </header>
 );
 
