@@ -17,6 +17,15 @@ module.exports = merge(commonConfig, {
     chunkFilename: '[id].chunk.js'
   },
 
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [ 'style-loader', 'css-loader' ]
+      }
+    ]
+  },
+
   devServer: {
     contentBase: './client/public',
     historyApiFallback: true,
