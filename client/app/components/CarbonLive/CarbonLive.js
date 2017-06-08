@@ -1,33 +1,63 @@
 import React from 'react';
 import RTChart from 'react-rt-chart';
 
+var axios = require('axios');
+
 class CarbonLive extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      company: 'aapl',
+      volume: 1000,
+      price: 0,
+      toreset: false,
+      modifier: 0,
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      toreset: (this.props.stock !== nextProps.stock),
+    });
   }
 
   componentDidMount() {
-    setInterval(() => this.forceUpdate(), 1000);
+    setInterval(() => {
+      axios.get('/api/info/' + this.props.stock + '/2015/06/08')
+        .then((response) => {
+          if (response.data && (Math.abs(this.state[this.props.type] - response.data.volume) < 1000 || this.state[this.props.type] === 1000)) {
+            this.setState(response.data);
+            this.setState({
+              modifier: this.state.modifier + (Math.random() > .5 ? -1 : 1) * (Math.random() * 3),
+              toreset: false,
+            })
+          }
+        })
+        .catch((err) => {
+        })
+    }, 500);
   }
 
   render() {
     console.log(this.props.stock);
-
-    function byVal(o) {
-      return o.company === this.props.stock.toUpperCase();
-    }
-
-    var temp = {
-      volume: 10000,
-    }
-
-    console.log(JSON.stringify(this.props));
+    // console.log(JSON.stringify(this.props));
     // var res = this.props.data.length > 0 ? this.props.data.find(x => x.company.toLowerCase() === this.props.stock) : temp;
+
     var data = {
       date: new Date(),
-      Volume: temp.volume,
+      Volume: this.state.volume + this.state.modifier,
       colors: {
-          Volume: '#00ffff',
+        Volume: '#00ffff',
+      }
+      // Bus: Math.random()
+    };
+
+    var pric = {
+      date: new Date(),
+      Price: this.state.price,
+      colors: {
+        Price: '#00ffff',
       }
       // Bus: Math.random()
     };
@@ -55,20 +85,62 @@ class CarbonLive extends React.Component {
       }
     };
 
-    var fields = ['Volume'];
+    var chartp = {
+      point: {
+        show: false
+      },
+      axis: {
+        x: {
+          // show: false
+          type: 'timeseries',
+        },
+        y: {
+          label: 'Price',
+        }
+      },
+      legend: {
+        show: false
+      },
+      zoom: {
+        enabled: true,
+        rescale: true,
 
-    return <RTChart
-    chart = {
-      chart
-    }
-    fields = {
-      fields
-    }
-    data = {
-      data
-    }
-    maxValues = {80}
-    />
+      }
+    };
+
+    var fields = ['Volume'];
+    var newf = ['Price'];
+
+    return (
+      <div>
+        <RTChart
+          chart={
+            chart
+          }
+          fields={
+            fields
+          }
+          data={
+            data
+          }
+          maxValues={80}
+          reset={this.state.toreset}
+        />
+        <RTChart
+          chart={
+            chartp
+          }
+          fields={
+            newf
+          }
+          data={
+            pric
+          }
+          maxValues={80}
+          reset={this.state.toreset}
+        />
+      </div>
+    )
   }
 }
 

@@ -502,4 +502,9 @@
 
 .ReactTable .rt-td {
     color: white;
+    text-align: center;
+}
+
+.ReactTable .rt-th {
+  color: grey;
 }

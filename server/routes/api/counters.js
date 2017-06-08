@@ -1,5 +1,5 @@
 var request = require('request');
-var googleFinance = require('google-finance');
+var yahooFinance = require('yahoo-finance');
 var _ = require('lodash');
 var util = require('util');
 const Finance = require('../../models/Finance');
@@ -50,42 +50,65 @@ module.exports = (app) => {
 
         var fin;
 
-        googleFinance.historical({
-          symbol: 'NASDAQ:' + req.params.symbol,
+        var sample = {
+          company: req.params.symbol,
+          volume: 10000,
+          open: 0,
+          close: 0,
+          high: 0,
+          low: 0,
+          sales: 0,
+          hopen: 0,
+          hclose: 0,
+          hhigh: 0,
+          hlow: 0,
+          hsales: 0,
+          news: 'N/A'
+        }
+
+        yahooFinance.historical({
+          symbol: req.params.symbol,
           from: from,
           to: to,
         }, function (err, quotes) {
-          if (err) { throw err; }
-          // var temp = nsymbols.indexOf(req.params.symbol);
-          var kys = Object.keys(n);
-          // console.log(kys);
-          // console.log(n);
-          fin = new Finance({
-            company: req.params.symbol,
-            volume: n[kys[symbols.indexOf(req.params.symbol.toUpperCase())]],
-            open: quotes[0] ? quotes[0].open : 0,
-            close: quotes[0] ? quotes[0].close : 0,
-            high: quotes[0] ? quotes[0].high : 0,
-            low: quotes[0] ? quotes[0].low : 0,
-            sales: quotes[0] ? quotes[0].volume : 0,
-            hopen: quotes[quotes.length - 1] ? quotes[quotes.length - 1].open : 0,
-            hclose: quotes[quotes.length - 1] ? quotes[quotes.length - 1].close : 0,
-            hhigh: quotes[quotes.length - 1] ? quotes[quotes.length - 1].high : 0,
-            hlow: quotes[quotes.length - 1] ? quotes[quotes.length - 1].low : 0,
-            hsales: quotes[quotes.length - 1] ? quotes[quotes.length - 1].volume : 0,
-          });
-          googleFinance.companyNews({
-            symbol: 'NASDAQ:' + req.params.symbol,
-          }, function (err2, news) {
-            if (err2) { throw err2; }
-            fin.news = news[0].title || '';
-            // console.log(fin);
-            fin.save()
-              .then()
-              .catch((err) => next(err));
-          })
+          if (err) { res.end(JSON.stringify(sample)); }
+          else {
+            // var temp = nsymbols.indexOf(req.params.symbol);
+            var kys = Object.keys(n);
+            // console.log(kys);
+            // console.log(n);
+            fin = new Finance({
+              company: req.params.symbol,
+              volume: n[kys[symbols.indexOf(req.params.symbol.toUpperCase())]],
+              open: quotes[0] ? quotes[0].open : 0,
+              close: quotes[0] ? quotes[0].close : 0,
+              high: quotes[0] ? quotes[0].high : 0,
+              low: quotes[0] ? quotes[0].low : 0,
+              sales: quotes[0] ? quotes[0].volume : 0,
+              hopen: quotes[quotes.length - 1] ? quotes[quotes.length - 1].open : 0,
+              hclose: quotes[quotes.length - 1] ? quotes[quotes.length - 1].close : 0,
+              hhigh: quotes[quotes.length - 1] ? quotes[quotes.length - 1].high : 0,
+              hlow: quotes[quotes.length - 1] ? quotes[quotes.length - 1].low : 0,
+              hsales: quotes[quotes.length - 1] ? quotes[quotes.length - 1].volume : 0,
+            });
 
-          res.end(JSON.stringify(fin));
+            yahooFinance.quote({
+              symbol: req.params.symbol,
+              modules: ['price', 'summaryDetail']
+            }, function (err, quotes) {
+              if (err) { res.end(JSON.stringify(sample)); }
+              else {
+                fin.price = quotes.price.regularMarketPrice;
+
+                fin.save()
+                  .then()
+                  .catch((err) => next(err));
+
+                res.end(JSON.stringify(fin));
+              }
+            })
+
+          }
         })
       }
     });

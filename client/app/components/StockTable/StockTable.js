@@ -3,34 +3,76 @@ import ReactTable from 'react-table';
 
 import './StockTable.css';
 
+var axios = require('axios');
+
 export default class StockTable extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            low: 0,
+            high: 0,
+            open: 0,
+            close: 0,
+            sales: 0,
+        }
     }
+
+    componentDidMount() {
+        axios.get('/api/info/' + this.props.stock + '/2015/06/08')
+            .then((response) => {
+                console.log(response);
+                if (response.data) {
+                    this.setState(response.data);
+                    console.log(this.state);
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+
+    componentWillUpdate(nextProps) {
+        axios.get('/api/info/' + nextProps.stock + '/2015/06/08')
+            .then((response) => {
+                console.log(response);
+                if (response.data) {
+                    this.setState(response.data);
+                    console.log(this.state);
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+
     render() {
         const data = [{
-            name: 'Tanner Linsley',
-            age: 26,
-            friend: {
-                name: 'Jason Maurer',
-                age: 23,
-            }
+            company: this.props.stock.toUpperCase(),
+            low: this.state.low,
+            high: this.state.high,
+            open: this.state.open,
+            close: this.state.close,
+            sales: this.state.sales,
         },];
 
         const columns = [{
-            Header: 'Name',
-            accessor: 'name' // String-based value accessors! 
+            Header: 'Company',
+            accessor: 'company' // String-based value accessors! 
         }, {
-            Header: 'Age',
-            accessor: 'age',
-            Cell: props => <span className='number'>3</span> // Custom cell components! 
+            Header: 'Low',
+            accessor: 'low',
         }, {
-            id: 'friendName', // Required because our accessor is not a string 
-            Header: 'Friend Name',
-            accessor: d => d.friend.name // Custom value accessors! 
+            Header: 'High',
+            accessor: 'high',
         }, {
-            Header: props => <span>Friend Age</span>, // Custom header components! 
-            accessor: 'friend.age'
+            Header: 'Open',
+            accessor: 'open',
+        }, {
+            Header: 'Close',
+            accessor: 'close',
+        }, {
+            Header: 'Sales',
+            accessor: 'sales',
         }]
 
         return (
@@ -39,7 +81,7 @@ export default class StockTable extends React.Component {
                 columns={columns}
                 showPagination={false}
                 showPageSizeOptions={false}
-                defaultPageSize={8}
+                defaultPageSize={1}
             />
         );
     }

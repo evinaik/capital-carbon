@@ -30,18 +30,18 @@ class Holder extends Component {
   }
 
   componentDidMount() {
-    setInterval(() => {
-      axios.get("/api/info/2015/06/08")
-      .then((response) => {
-        console.log(response.data);
-        this.setState({
-          all: response.data,
-        })
-      })
-      .catch((err) => {
-        // console.log(err)
-      });
-    }, 5000);
+    // setInterval(() => {
+    //   axios.get("/api/info/2015/06/08")
+    //   .then((response) => {
+    //     console.log(response.data);
+    //     this.setState({
+    //       all: response.data,
+    //     })
+    //   })
+    //   .catch((err) => {
+    //     // console.log(err)
+    //   });
+    // }, 5000);
   }
 
   render() {
@@ -59,11 +59,11 @@ class Holder extends Component {
             <option value="twtr">TWTR</option>
           </select>
         <div className="table-center">
-          <StockTable data={this.state.all} />
+          <StockTable stock={this.state.value}/>
         </div>
 
         <div className="center">
-          <CarbonLive data={this.state.all} stock={this.state.value}/>
+          <CarbonLive stock={this.state.value} type={'volume'}/>
         </div>
       </div>
     )
@@ -80,7 +80,7 @@ export default class App extends Component {
     return (
       <div>
         <Holder />
-        <Footer />
+        {/*<Footer />*/}
       </div>
     );
   }
