@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 import StockTable from '../StockTable/StockTable';
 import CarbonLive from '../CarbonLive/CarbonLive';
 
@@ -21,6 +22,7 @@ export default class App extends Component {
         <div className="center">
         <CarbonLive />
         </div>
+        <Footer />
       </div>
     );
   }

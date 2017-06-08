@@ -231,3 +231,10 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .w3-hover-text-theme:hover {color:#009688 !important}
 .w3-hover-border-theme:hover {border-color:#009688 !important}
 
+h3 {
+    color: white;
+    text-align: center;
+    bottom: 0%;
+    width: 100%;
+    position: absolute;
+}
