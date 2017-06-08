@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 
 import Header from '../Header/Header';
-import StockTable from '../StockTable/StockTable';
 import CarbonLive from '../CarbonLive/CarbonLive';
-
-import './App.css';
 
 export default class App extends Component {
   constructor(props) {
@@ -14,12 +11,10 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <Header />
-        <div className="twoPane">
-          <StockTable />
-          <CarbonLive />
-        </div>
-      </div>
+      <Header />
+
+      <CarbonLive />
+    </div>
     );
   }
 }
