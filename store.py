@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
-from pymongo import MongoClient
-import datetime
 import pprint
+import datetime
+from pymongo import MongoClient
 
 client = MongoClient()
 db = client.test_database
@@ -11,36 +11,37 @@ collection = db.test_collection
 
 
 def read_info(f):
-	lines = f.readlines()
-	
-	for line in lines:
-		
-		words = line.split("\t")
-		if collection.find({"company": words[0]}):
-			print(words[0])
-			print(collection.find({"company": words[0]}).count())
-			collection.update(
-				{"company": words[0]}, 
-				{'$push':
-					{
-					'sales':
-						{
-						'datetime': datetime.datetime.now(),
-						'value': float(words[1])	
-						}
-					}
-				})
-		else:
-			collection.insert(
-				{
-					"company": words[0], 
-					'sales':
-						{
-						'datetime': datetime.datetime.now(),
-						'value': float(words[1])	
-						}
-				}
-				)
+    lines = f.readlines()
+
+    for line in lines:
+
+        words = line.split("\t")
+        if collection.find({"company": words[0]}):
+            print(words[0])
+            print(collection.find({"company": words[0]}).count())
+            collection.update_one(
+                {"company": words[0]},
+                {'$push':
+                 {
+                     'sales':
+                     {
+                         'datetime': datetime.datetime.now(),
+                         'value': float(words[1])
+                     }
+                 }
+                 })
+        else:
+            collection.insert(
+                {
+                    "company": words[0],
+                    'sales':
+                    {
+                        'datetime': datetime.datetime.now(),
+                        'value': float(words[1])
+                    }
+                }
+            )
+
 
 file1 = open("out/part-00000")
 read_info(file1)
@@ -62,4 +63,4 @@ file5 = open("out/part-00004")
 read_info(file5)
 file4.close()
 
-#pprint.pprint(collection.find_one())
+pprint.pprint(collection.find_one())

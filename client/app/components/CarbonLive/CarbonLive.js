@@ -55,6 +55,7 @@ class CarbonLive extends React.Component {
     data = {
       data
     }
+    maxValues = {80}
     />
   }
 }
