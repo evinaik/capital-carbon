@@ -58,4 +58,3 @@ virtualenv venv --distribute --always-copy
 source venv/bin/activate
 
 # Install the project requirements given in the requirements.txt file in your working directory
-pip install -r requirements.txt
