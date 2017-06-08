@@ -1,11 +1,17 @@
 
 td {
-    color: grey;
-    /*width: 100%;*/
+    border: 1px solid #ddd;
+    padding: 8px;
 }
 
 th {
-    color: mintcream;
+    border: 1px solid #ddd;
+    padding: 8px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #009688;
+    color: white;
 }
 
 table {

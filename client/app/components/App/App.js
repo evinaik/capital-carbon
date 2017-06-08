@@ -15,9 +15,11 @@ export default class App extends Component {
     return (
       <div>
         <Header />
-        <div className="twoPane">
-          <StockTable />
-          <CarbonLive />
+        <div className="table-center">
+        <StockTable />
+        </div>
+        <div className="center">
+        <CarbonLive />
         </div>
       </div>
     );
