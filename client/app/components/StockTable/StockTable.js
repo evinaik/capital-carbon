@@ -32,6 +32,13 @@ export default class StockTable extends React.Component {
     }
 
     componentWillUpdate(nextProps) {
+        this.setState({
+            low: 0,
+            high: 0,
+            open: 0,
+            close: 0,
+            sales: 0,
+        })
         axios.get('/api/info/' + nextProps.stock + '/2017/06/08')
             .then((response) => {
                 console.log(response);
