@@ -31,7 +31,7 @@ export default class StockTable extends React.Component {
             })
     }
 
-    componentWillUpdate(nextProps) {
+    componentWillReceiveProps(nextProps) {
         this.setState({
             low: 0,
             high: 0,
