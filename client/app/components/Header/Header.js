@@ -26,10 +26,6 @@ class Header extends React.Component {
         <header>
           <h1>Insider Trading</h1>
           <h5>Carbon2017</h5>
-          <select name="company" className="choose" value={this.state.value} onChange={this.handleChange}>
-            <option value="aapl">AAPL</option>
-            <option value="googl">GOOGL</option>
-          </select>
         </header>
       </div>
     );
