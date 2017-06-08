@@ -1,21 +1,29 @@
 import React, { Component } from 'react';
 
 import Header from '../Header/Header';
-import CarbonLive from '../CarbonLive/CarbonLive';
 import Footer from '../Footer/Footer';
+import StockTable from '../StockTable/StockTable';
+import CarbonLive from '../CarbonLive/CarbonLive';
 
-const App = ({ children }) => (
-  <div>
-    <Header />
+import './App.css';
 
-    <CarbonLive />
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-    <main>
-      {children}
-    </main>
-
-    <Footer />
-  </div>
-);
-
-export default App;
+  render() {
+    return (
+      <div>
+        <Header />
+        <div className="table-center">
+          <StockTable />
+        </div>
+        <div className="center">
+          <CarbonLive />
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+}

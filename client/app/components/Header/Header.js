@@ -1,19 +1,23 @@
 import React from 'react';
 import './Header.css';
-// import Logo from 'babel-loader!svg-react-loader!./logo.svg';
 
 
 const Header = () => (
-  <header>
-    <nav className="header">
-      <div className="cap">
-        Capital One Carbon 2017
-      </div>
-      <div className="team">
-        Team A Migos
-      </div>
-    </nav>
-  </header>
+
+
+  <div className="container">
+    <header>
+      <h1>Insider Trading</h1>
+      <h5>Carbon2017</h5>
+      <select name="company" className="choose">
+        <option value="aapl">AAPL</option>
+        <option value="googl">GOOGL</option>
+      </select>
+    </header>
+  </div>
+
 );
+
+
 
 export default Header;

@@ -1,0 +1,17 @@
+/*.twoPane {
+    display: flex;
+    flex-direction: row;
+    height: 200px;
+}*/
+
+.center {
+    margin: auto;
+    width: 75%;
+    padding: 20px;
+}
+
+.table-center {
+    margin: auto;
+    width: 50%;
+    padding: 20px;
+}
