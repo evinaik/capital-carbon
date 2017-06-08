@@ -11,20 +11,15 @@ class Header extends React.Component {
       value: '',
     }
 
-    this.handleChange = this.handleChange.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({
-      value: event.target.value
-    })
-  }
 
   render() {
     return (
       <div className="container">
         <header>
-          <h1>Insider Trading</h1>
+          <h1>CAPITAL: Creating A Proprietary Investment Trading and Analytical Liason</h1>
           <h5>Carbon2017</h5>
         </header>
       </div>
