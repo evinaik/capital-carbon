@@ -80,7 +80,7 @@ export default class App extends Component {
     return (
       <div>
         <Holder />
-        {/*<Footer />*/}
+        <Footer />
       </div>
     );
   }

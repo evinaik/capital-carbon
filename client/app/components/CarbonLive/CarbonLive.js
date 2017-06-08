@@ -125,7 +125,7 @@ class CarbonLive extends React.Component {
           }
           maxValues={80}
           reset={this.state.toreset}
-        />
+        /><br/><br/><br/><br/><br/><br/><br/>
         <RTChart
           chart={
             chartp

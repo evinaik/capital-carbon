@@ -6,11 +6,13 @@
 
 .center {
     margin: auto;
-    width: 75%;
+    width: 90%;
     padding: 20px;
+    height:95%;
 }
 
 .table-center {
+    top: 20%;
     margin: auto;
     width: 50%;
     padding: 20px;
