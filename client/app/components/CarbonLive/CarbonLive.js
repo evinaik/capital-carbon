@@ -13,7 +13,7 @@ class CarbonLive extends React.Component {
     render() {
         var data = {
             date: new Date(),
-            Cost: Math.random()
+            Volume: Math.random()
             // Bus: Math.random()
         };
 
@@ -27,15 +27,20 @@ class CarbonLive extends React.Component {
                     type: 'timeseries',
                 },
                 y: {
-                    label: 'Money',
+                    label: 'Volume',
                 }
             },
             legend: {
                 show: false
+            },
+            zoom: {
+                enabled: true,
+                rescale: true,
+                
             }
         };
 
-        var fields = ['Cost'];
+        var fields = ['Volume'];
     
         return <RTChart
                 chart={chart}
