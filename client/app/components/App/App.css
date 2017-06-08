@@ -1,0 +1,5 @@
+.twoPane {
+    display: flex;
+    flex-direction: row;
+    height: 200px;
+}
