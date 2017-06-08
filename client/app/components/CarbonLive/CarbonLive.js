@@ -24,7 +24,7 @@ class CarbonLive extends React.Component {
 
   componentDidMount() {
     setInterval(() => {
-      axios.get('/api/info/' + this.props.stock + '/2015/06/08')
+      axios.get('/api/info/' + this.props.stock + '/2017/06/07')
         .then((response) => {
           if (response.data && (Math.abs(this.state[this.props.type] - response.data.volume) < 1000 || this.state[this.props.type] === 1000)) {
             this.setState(response.data);
@@ -48,7 +48,7 @@ class CarbonLive extends React.Component {
       date: new Date(),
       Volume: this.state.volume + this.state.modifier,
       colors: {
-        Volume: '#00ffff',
+        Volume: '#ff0000',
       }
       // Bus: Math.random()
     };

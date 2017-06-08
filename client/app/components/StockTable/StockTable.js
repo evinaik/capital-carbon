@@ -18,7 +18,7 @@ export default class StockTable extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('/api/info/' + this.props.stock + '/2015/06/08')
+        axios.get('/api/info/' + this.props.stock + '/2017/06/08')
             .then((response) => {
                 console.log(response);
                 if (response.data) {
@@ -32,7 +32,7 @@ export default class StockTable extends React.Component {
     }
 
     componentWillUpdate(nextProps) {
-        axios.get('/api/info/' + nextProps.stock + '/2015/06/08')
+        axios.get('/api/info/' + nextProps.stock + '/2017/06/08')
             .then((response) => {
                 console.log(response);
                 if (response.data) {
