@@ -4,6 +4,7 @@ import RTChart from 'react-rt-chart';
 class CarbonLive extends React.Component {
   constructor(props) {
     super(props);
+
   }
 
   componentDidMount() {

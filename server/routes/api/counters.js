@@ -33,11 +33,13 @@ module.exports = (app) => {
           'GOOGL',
           'AMZN',
           'FB',
+          'AMD',
+          'COF',
+          'TSLA',
+          'TWTR',
         ]
 
-        mongoose.connection.collections['finances'].drop(function (err) {
-          // console.log('collection dropped');
-        });
+        // Finance.collection.drop();
 
         var nsymbols = symbols.map(function (x) {
           return 'NASDAQ:' + x;
