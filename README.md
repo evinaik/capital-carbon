@@ -1,6 +1,5 @@
-# MERN-boilerplate
+# CAPITAL Carbon 2017
 
-This is a boilerplate project using the following technologies:
 - [React](https://facebook.github.io/react/) and [React Router](https://github.com/reactjs/react-router) for the frontend
 - [Express](http://expressjs.com/) and [Mongoose](http://mongoosejs.com/) for the backend
 - [Sass](http://sass-lang.com/) for styles (using the SCSS syntax)
@@ -15,19 +14,6 @@ This is a boilerplate project using the following technologies:
 npm install
 ```
 
+## Description
 
-## Running
-
-Make sure to add a `config.js` file in the `config` folder. See the example there for more details.
-
-Production mode:
-
-```shell
-npm start
-```
-
-Development (Webpack dev server) mode:
-
-```shell
-npm run start:dev
-```
+CAPITAL: Creating A Proprietary Investment Trading and Analytical Liason
