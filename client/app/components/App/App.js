@@ -17,10 +17,10 @@ export default class App extends Component {
       <div>
         <Header />
         <div className="table-center">
-        <StockTable />
+          <StockTable />
         </div>
         <div className="center">
-        <CarbonLive />
+          <CarbonLive />
         </div>
         <Footer />
       </div>

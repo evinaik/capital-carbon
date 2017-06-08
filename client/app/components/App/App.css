@@ -1,8 +1,8 @@
-.twoPane {
+/*.twoPane {
     display: flex;
     flex-direction: row;
     height: 200px;
-}
+}*/
 
 .center {
     margin: auto;

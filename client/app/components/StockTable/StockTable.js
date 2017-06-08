@@ -1,41 +1,46 @@
 import React from 'react';
-import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
+import ReactTable from 'react-table';
 
-import './react-bootstrap-table-all.min.css';
 import './StockTable.css';
-
-function priceFormatter(cell, row) {
-    return '<i class="glyphicon glyphicon-usd"></i> ' + cell;
-}
 
 export default class StockTable extends React.Component {
     constructor(props) {
         super(props);
     }
-
     render() {
-        var products = [{
-            stock: "AAPL",
-            low: 10.00,
-            high: 20.00,
-            close: 15.00,
-            avg: 100,
-        }, {
-            stock: "GOOGL",
-            low: 10.00,
-            high: 20.00,
-            close: 15.00,
-            avg: 100,
+        const data = [{
+            name: 'Tanner Linsley',
+            age: 26,
+            friend: {
+                name: 'Jason Maurer',
+                age: 23,
+            }
         },];
-        // It's a data format example.
+
+        const columns = [{
+            Header: 'Name',
+            accessor: 'name' // String-based value accessors! 
+        }, {
+            Header: 'Age',
+            accessor: 'age',
+            Cell: props => <span className='number'>3</span> // Custom cell components! 
+        }, {
+            id: 'friendName', // Required because our accessor is not a string 
+            Header: 'Friend Name',
+            accessor: d => d.friend.name // Custom value accessors! 
+        }, {
+            Header: props => <span>Friend Age</span>, // Custom header components! 
+            accessor: 'friend.age'
+        }]
+
         return (
-            <BootstrapTable data={products} striped={true} hover={true} condensed>
-                <TableHeaderColumn dataField="stock" isKey={true} dataAlign="center" dataSort={true}>Stock</TableHeaderColumn>
-                <TableHeaderColumn dataField="low" >Low</TableHeaderColumn>
-                <TableHeaderColumn dataField="high" dataFormat={priceFormatter}>High</TableHeaderColumn>
-                <TableHeaderColumn dataField="close" dataFormat={priceFormatter}>Close</TableHeaderColumn>
-                <TableHeaderColumn dataField="avg" >Avg. Volume</TableHeaderColumn>
-            </BootstrapTable>
+            < ReactTable
+                data={data}
+                columns={columns}
+                showPagination={false}
+                showPageSizeOptions={false}
+                defaultPageSize={8}
+            />
         );
     }
 };
