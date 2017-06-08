@@ -20,6 +20,18 @@ class CarbonLive extends React.Component {
         var chart = {
             point: {
                 show: false
+            },
+            axis: {
+                x: {
+                    // show: false
+                    type: 'timeseries',
+                },
+                y: {
+                    label: 'Money',
+                }
+            },
+            legend: {
+                show: false
             }
         };
 
