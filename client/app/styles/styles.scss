@@ -2,3 +2,10 @@
 
 @import 'vendor/normalize';
 
+.c3 .c3-axis path, .c3 .c3-axis line, .c3-tick, .c3 text {
+    stroke: white;
+}
+
+.c3 .c3-line {
+    stroke-width: 2px;
+}
